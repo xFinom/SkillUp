@@ -9,4 +9,9 @@ router.get("/", async (req, res) => {
   res.json(result.rows[0].now);
 });
 
+router.post("/registro", async (req, res) => {
+  const datAlumn =req.body;
+  console.log(datAlumn)
+});
+
 module.exports = router;
