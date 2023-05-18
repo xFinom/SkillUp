@@ -19,6 +19,23 @@ function Signin() {
     setUser({ ...user, [name]: value });
   };
 
+  const handleClick = () => {
+    fetch('/registro', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({...user})
+    })
+      .then(response => response.json())
+      .then(data => {
+        setUser(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
   return (
     <div className="container mb-4">
       <form className="form-signin">
@@ -140,6 +157,7 @@ function Signin() {
         <button
           className="btn btn-lg btn-outline-secondary btn-block"
           type="submit "
+          onClick={handleClick}
         >
           Registro
         </button>
