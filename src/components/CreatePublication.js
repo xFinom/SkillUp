@@ -1,7 +1,7 @@
 import React from "react";
 import '../App.css';
 
-function CuerpoOfertas() {
+function CreatePublication() {
   return (
     <>
       <div className="d-flex justify-content-center align-items-center h-100">
@@ -33,4 +33,4 @@ function CuerpoOfertas() {
   );
 }
 
-export default CuerpoOfertas;
+export default CreatePublication;

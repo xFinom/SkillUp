@@ -1,5 +1,6 @@
 import React from "react";
-import Navbar from "./components/Navbar";
+import BodyMainPage from './components/BodyMainPage'
+import CreatePublication from './components/CreatePublication'
 import Publications from "./components/Publications";
 import PubllicationPage from "./components/PublicationPage";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
@@ -11,8 +12,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar />} />
+          <Route path="/" element={<BodyMainPage />} />
           <Route path="/publications" element={<Publications />} />
+          <Route path="/publications/new" element={<CreatePublication />} />
           <Route path="/publication/:id" element={<PubllicationPage />} />
         </Routes>
       </BrowserRouter>
