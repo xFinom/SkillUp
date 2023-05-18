@@ -1,21 +1,21 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import Publications from "./components/Publications";
-import Footer from "./components/Footer";
+import PubllicationPage from "./components/PublicationPage";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
-import './App.css'
-
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Publications />
-      <Publications />
-      <Publications />
-      <Publications />
-      <Publications />
-      <Footer />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navbar />} />
+          <Route path="/publications" element={<Publications />} />
+          <Route path="/publication/:id" element={<PubllicationPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,7 +1,9 @@
 import React from "react";
 import "./Component.css";
 
-function PublicationCard({ title, description, footer }) {
+function PublicationCard({ title, description, footer, id_publicacion }) {
+  const url = "/publication/" + id_publicacion;
+  
   return (
     <div
       className="card text-white mb-3"
@@ -11,7 +13,7 @@ function PublicationCard({ title, description, footer }) {
       <div className="card-body bg-component">
         <h4 className="card-title">{title}</h4>
         <p className="card-text text-secondary">{description}</p>
-        <a href="localhost:3000" className="btn btn-outline-secondary">
+        <a href={url} className="btn btn-outline-secondary">
           Ir a la oferta
         </a>
       </div>

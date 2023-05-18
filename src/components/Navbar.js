@@ -3,9 +3,9 @@ import "./Component.css";
 
 function Navbar() {
   return (
-    <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-component border-bottom">
+    <nav className="navbar navbar-expand-sm fixed-top navbar-dark bg-component border-bottom">
       <div className="container">
-        <a href="localhost:3000" class="navbar-brand mb-0 h1">
+        <a href="localhost:3000" className="navbar-brand mb-0 h1">
           SkillUp!
         </a>
 
@@ -30,10 +30,11 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <form class="form-inline nav-item">
+        <form className="form-inline nav-item">
           <input
-            class="form-control mr-sm-2 text-white"
+            className="form-control mr-sm-2 text-white"
             type="search"
+            name="search"
             placeholder="Buscar oferta"
             aria-label="Search"
             style={{ backgroundColor: "#2d2d2f" }}
