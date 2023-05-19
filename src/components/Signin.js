@@ -60,6 +60,7 @@ function Signin() {
             placeholder="Nombre/s"
             required
             autofocus
+            name="nombres"
             onChange={handleChange}
           />
           <label for="inputName">Nombres</label>
@@ -70,6 +71,7 @@ function Signin() {
             id="inputLastNames"
             className="form-control bg-transparent text-light"
             placeholder="Apellidos"
+            name="apellidos"
             required
             autofocus
             onChange={handleChange}
@@ -83,6 +85,7 @@ function Signin() {
             id="inputFecha"
             className="form-control bg-transparent text-secondary"
             placeholder="Fecha"
+            name="fecha"
             required
             autofocus
             onChange={handleChange}
@@ -96,6 +99,7 @@ function Signin() {
             id="inputCareer"
             className="form-control bg-transparent text-light"
             placeholder="Carrera"
+            name="carrera"
             required
             autofocus
             onChange={handleChange}
@@ -109,6 +113,7 @@ function Signin() {
             id="inputUniversity"
             className="form-control bg-transparent text-light"
             placeholder="Universidad"
+            name="universidad"
             required
             autofocus
             onChange={handleChange}
@@ -122,6 +127,7 @@ function Signin() {
             id="inputEmail"
             className="form-control bg-transparent text-light"
             placeholder="Correo"
+            name="correo"
             required
             autofocus
             onChange={handleChange}
@@ -135,6 +141,7 @@ function Signin() {
             id="inputPassword"
             className="form-control bg-transparent text-light"
             placeholder="Contraseña"
+            name="password"
             required
             onChange={handleChange}
           />
@@ -148,6 +155,7 @@ function Signin() {
             id="inputConfirmationPassword"
             className="form-control bg-transparent text-light"
             placeholder="Confirmar contraseña"
+            name="confpassword"
             required
             onChange={handleChange}
           />

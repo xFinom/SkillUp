@@ -60,6 +60,7 @@ function Esignin() {
               id="inputName"
               className="form-control bg-transparent text-white"
               placeholder="Nombre de la empresa"
+              name="nombre"
               required
               autofocus
               onChange={handleChange}
@@ -73,6 +74,7 @@ function Esignin() {
               id="inputDireccion"
               className="form-control bg-transparent text-white"
               placeholder="Direccion de la empresa"
+              name="direccion"
               required
               autofocus
               onChange={handleChange}
@@ -86,6 +88,7 @@ function Esignin() {
               id="inputRFC"
               className="form-control bg-transparent text-white"
               placeholder="RFC"
+              name="RFC"
               required
               autofocus
               onChange={handleChange}
@@ -99,6 +102,7 @@ function Esignin() {
               id="inputEmail"
               className="form-control bg-transparent text-white"
               placeholder="Correo"
+              name="correo"
               required
               autofocus
               onChange={handleChange}
@@ -112,6 +116,7 @@ function Esignin() {
               id="inputPassword"
               className="form-control bg-transparent text-white"
               placeholder="Contraseña"
+              name="password"
               required
               onChange={handleChange}
             />
@@ -124,6 +129,7 @@ function Esignin() {
               id="inputConfirmationPassword"
               className="form-control bg-transparent text-white"
               placeholder="Confirmar contraseña"
+              name="confpassword"
               required
               onChange={handleChange}
             />
