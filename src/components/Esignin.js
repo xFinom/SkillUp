@@ -34,7 +34,7 @@ function Esignin() {
   };
 
   return (
-    <div class="bg-dark d-flex justify-content-center align-items-center vh-100">
+
       <div className="container mb-4">
         <form className="form-signin">
           <div className="text-center mb-4">
@@ -64,7 +64,7 @@ function Esignin() {
               autofocus
               onChange={handleChange}
             />
-            <label for="inputName">Nombres</label>
+            <label for="inputName"></label>
           </div>
 
           <div className="form-label-group">
@@ -139,7 +139,7 @@ function Esignin() {
           </button>
         </form>
       </div>
-    </div>
+   
   );
 }
 

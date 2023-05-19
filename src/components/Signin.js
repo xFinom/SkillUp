@@ -113,7 +113,7 @@ function Signin() {
             autofocus
             onChange={handleChange}
           />
-          <label for="inputUniversity">Carrera</label>
+          <label for="inputUniversity">Universidad</label>
         </div>
 
         <div className="form-label-group">

@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 // importar las variables de entorno
 dotenv.config();
  
