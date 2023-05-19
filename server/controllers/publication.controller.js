@@ -87,9 +87,44 @@ const filterPublications = async (req, res) => {
   }
 };
 
+const searchAndFilterPublications = async (req, res) => {
+  try {
+    const searchTerm = req.query.busqueda;
+    const area = req.query.area;
+    const tipo = req.query.tipo;
+
+    let query = buildQuery();
+    const values = [];
+
+    if (searchTerm) {
+      query += ` AND publicacion.titulo ILIKE $${values.length + 1}`;
+      values.push(`%${searchTerm}%`);
+    }
+
+    if (area) {
+      query += ` AND publicacion.id_area = $${values.length + 1}`;
+      values.push(area);
+    }
+
+    if (tipo) {
+      query += ` AND publicacion.id_tipo = $${values.length + 1}`;
+      values.push(tipo);
+    }
+
+    const result = await pool.query(query, values);
+    return res.status(200).json(result.rows);
+  } catch (error) {
+    console.error("Error al filtrar y buscar las publicaciones:", error);
+    return res
+      .status(500)
+      .json({ error: "Error al filtrar y buscar las publicaciones" });
+  }
+};
+
 module.exports = {
   getAllPublications,
   getPublicationById,
   searchPublication,
   filterPublications,
+  searchAndFilterPublications,
 };
