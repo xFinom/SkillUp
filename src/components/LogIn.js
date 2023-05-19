@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function LogIn() {
+const LogIn = ({setView}) => {
   const [Log, setLog] = useState({
     correo: "",
     password: "",
@@ -13,7 +13,7 @@ function LogIn() {
   };
 
   const handleClick = () => {
-    fetch("/Login", {
+    fetch("http://localhost:3001/Login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ function LogIn() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setLog(data);
+        console.log(data)
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -45,6 +45,7 @@ function LogIn() {
             class="form-control bg-light"
             type="text"
             placeholder="Email"
+            name="correo"
             required
             autofocus
             onChange={handleChange}
@@ -55,6 +56,7 @@ function LogIn() {
           <input
             class="form-control bg-light"
             type="password"
+            name="password"
             placeholder="contraseña"
             required
             autofocus
@@ -79,7 +81,7 @@ function LogIn() {
           </div>
         </div>
         <div class="btn btn-secondary d-flex gap-2 justify-content-center border mt-2 shadow-sm">
-          <div class="fw-semibold text-white">soy un usuario nuevo</div>
+          <div onClick={() => setView(1)} class="fw-semibold text-white">soy un usuario nuevo</div>
         </div>
       </div>
     </div>
