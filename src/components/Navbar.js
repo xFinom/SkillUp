@@ -27,13 +27,13 @@ function Navbar() {
             </li>
 
             <li className="nav-item">
-              <Link to="/publications" className="nav-link">
+              <Link to="/publications?tipo=2" className="nav-link">
                 Cursos
               </Link>
             </li>
 
             <li className="nav-item">
-              <Link to="/publications" className="nav-link">
+              <Link to="/publications?tipo=1" className="nav-link">
                 Trabajos
               </Link>
             </li>
