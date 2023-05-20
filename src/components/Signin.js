@@ -37,8 +37,8 @@ function Signin() {
   };
 
   const handleClick = () => {
-    const body = studentForm ? user : company
-    fetch('http://localhost:3001/registro', {
+    const body = studentForm ? { ...user, type: 'alumno' } : { ...company, type: 'empresa' }
+    fetch('/registro', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ function Signin() {
 
   return (
     <div className="container mb-4">
-      <form className="form-signin">
+      <div className="form-signin">
         <div className="text-center mb-4">
           <h3 className="text-white">SkillUp!</h3>
         </div>
@@ -79,7 +79,7 @@ function Signin() {
         >
           Registro
         </button>
-      </form>
+      </div>
     </div>
   );
 }

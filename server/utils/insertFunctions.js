@@ -5,8 +5,8 @@ async function insertarUsuario(pool, user) {
     const nuevoUsuario = {
       id_alumno: uuidv4.uuid(),
       contrasena: user.password,
-      nombre: user.nombre,
-      apellido: user.apellido,
+      nombre: user.nombres,
+      apellido: user.apellidos,
       universidad: user.universidad,
       carrera: user.carrera,
       descripcion: 'Descripción del usuario',
@@ -41,4 +41,37 @@ async function insertarUsuario(pool, user) {
   }
 }
 
-module.exports = insertarUsuario
+async function insertEnterprise(pool, user) {
+  try {
+    const nuevoUsuario = {
+      id_empresa: uuidv4.uuid(),
+      RFC: user.RFC,
+      direccion: user.direccion,
+      contrasena: user.password,
+      nombre: user.nombre,
+      correo: user.correo,
+      id_estado: 1,
+    };
+
+    const query = 'INSERT INTO skillup.empresa (id_empresa, RFC, direccion, contrasena, nombre, correo, id_estado) VALUES ($1, $2, $3, $4, $5, $6, $7)';
+    const values = [
+      nuevoUsuario.id_empresa,
+      nuevoUsuario.RFC,
+      nuevoUsuario.direccion,
+      nuevoUsuario.contrasena,
+      nuevoUsuario.nombre,
+      nuevoUsuario.correo,
+      nuevoUsuario.id_estado,
+    ];
+
+    const client = await pool.connect();
+    await client.query(query, values);
+    client.release();
+
+    return {message: 'Empresa insertada correctamente', status: 200}
+  } catch (error) {
+    console.error('Error al insertar la empresa:', error);
+  }
+}
+
+module.exports = {insertarUsuario, insertEnterprise}
