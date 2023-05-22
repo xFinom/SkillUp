@@ -7,7 +7,7 @@ function Signin() {
   const [company, setCompany] = useState({
     nombre: " ",
     direccion: " ",
-    RFC: " ",
+    rfc: " ",
     correo: "",
     password: "",
     confPassword: "",
@@ -38,7 +38,7 @@ function Signin() {
 
   const handleClick = () => {
     const body = studentForm ? { ...user, type: 'alumno' } : { ...company, type: 'empresa' }
-    fetch('/registro', {
+    fetch('http://localhost:3001/registro', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

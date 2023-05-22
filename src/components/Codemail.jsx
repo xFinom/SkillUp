@@ -2,15 +2,33 @@ import React from "react";
 import { useState } from "react";
 
 const Codemail = () => {
-    
-    const [code, setCode] = useState({
-        password: " ",
+
+  const [code, setCode] = useState({
+    code: " "
+  });
+
+  const handleCodeChange = (e) => {
+    const { name, value } = e.target;
+    setCode({ ...code, [name]: value });
+  };
+  
+  const handleClick = () => {
+  const body = {...code}
+    fetch('http://localhost:3001/verifycode', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.error('Error:', error);
       });
-      
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setCode({ ...code, [name]: value });
-      };
+  };
 
     return(
 <div class="bg-dark d-flex justify-content-center align-items-center vh-100">
@@ -29,7 +47,7 @@ const Codemail = () => {
             type="text"
             placeholder="codigo"
             name="code"
-            onChange={handleChange}
+            onChange={handleCodeChange}
             required
             autofocus
           />
@@ -41,6 +59,7 @@ const Codemail = () => {
         <button
           class="btn btn-secondary text-white w-100 mt-4 fw-semibold shadow-sm"
           type="submit"
+          onClick={handleClick}
         >
           VALIDAR PERFIL
         </button>

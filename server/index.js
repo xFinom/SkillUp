@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
 // importar las variables de entorno
 dotenv.config();
  
@@ -16,6 +17,7 @@ const port = process.env.PORT;
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 app.use(taskRoutes)
 app.use(userRoutes)
