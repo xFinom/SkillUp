@@ -4,21 +4,20 @@ async function obtenerUsuario(pool, user) {
     const values = [user.correo, user.password]
 
     const client = await pool.connect();
-    const res = await client.query(query, values);
-    const validUser = res.estado_cuenta; 
+    const res = await client.query(query, values);   
     client.release();
 
-    if(validUser.estado_cuenta === 2)
+    if(res === 2)
     {
-      return { validUser }
+      return { res }
     }
     else
     {
-      return { validUser: null }
+      return { res: null }
     }
     
   } catch (error) {
-    return { validUser: null }
+    return { res: null }
   }
 }
 
