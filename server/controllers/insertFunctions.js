@@ -88,9 +88,10 @@ async function insertEnterprise(pool, user) {
       correo: user.correo,
       id_estado: 1,
       tipo_usuario: 2,
+      codigo: uuidv4.uuid(),
     };
 
-    const query = 'INSERT INTO skillup.empresa (id_empresa, rfc, direccion, nombre, correo, id_estado) VALUES ($1, $2, $3, $4, $5)';
+    const query = 'INSERT INTO skillup.empresa (id_empresa, rfc, direccion, nombre, correo) VALUES ($1, $2, $3, $4, $5)';
     const values = [
       nuevoUsuario.id_empresa,
       nuevoUsuario.rfc,
@@ -99,12 +100,13 @@ async function insertEnterprise(pool, user) {
       nuevoUsuario.correo,
     ];
 
-    const query2 = 'INSERT INTO skillup.cuenta_usario ( contrasena, correo, estado_cuenta, tipo_usuario) VALUES ($1, $2, $3, $4)';
+    const query2 = 'INSERT INTO skillup.cuenta_usuario ( contrasena, correo, estado_cuenta, tipo_usuario, codigo) VALUES ($1, $2, $3, $4, $5)';
     const values2 = [
       nuevoUsuario.contrasena,
       nuevoUsuario.correo,
       nuevoUsuario.id_estado,
       nuevoUsuario.tipo_usuario,
+      nuevoUsuario.codigo,
     ];
 
     const client = await pool.connect();
