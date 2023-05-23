@@ -33,7 +33,7 @@ async function insertarUsuario(pool, user) {
       nuevoUsuario.fecha_nacimiento,
     ];
 
-    const query2 = 'INSERT INTO skillup.cuenta_usuario (id_cuenta, contrasena, correo, estado_cuenta, tipo_usuario, codigo) VALUES ($1, $2, $3, $4, $5, $6)';
+    const query2 = 'INSERT INTO skillup.cuenta_usuario (id_usuario, contrasena, correo, estado_cuenta, tipo_usuario, codigo) VALUES ($1, $2, $3, $4, $5, $6)';
     const values2 = [
       nuevoUsuario.id_alumno,
       nuevoUsuario.contrasena,
@@ -99,7 +99,7 @@ async function insertEnterprise(pool, user) {
       nuevoUsuario.nombre,
     ];
 
-    const query2 = 'INSERT INTO skillup.cuenta_usuario ( id_cuenta, contrasena, correo, estado_cuenta, tipo_usuario, codigo) VALUES ($1, $2, $3, $4, $5, $6)';
+    const query2 = 'INSERT INTO skillup.cuenta_usuario ( id_usuario, contrasena, correo, estado_cuenta, tipo_usuario, codigo) VALUES ($1, $2, $3, $4, $5, $6)';
     const values2 = [
       nuevoUsuario.id_empresa,
       nuevoUsuario.contrasena,
