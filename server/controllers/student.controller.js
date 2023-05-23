@@ -2,13 +2,12 @@ const pool = require('../database/database')
 
 const buildSearchQuery = () => {
   return `
-  SELECT id_alumno, alumno.nombre, apellido, universidad, carrera, descripcion, grados.grado, sexo, correo, fecha_nacimiento FROM skillup.alumno, skillup.grados WHERE alumno.id_grado = grados.id_grado;
+  SELECT id_alumno, alumno.nombre, apellido, universidad, carrera, descripcion, grados.grado, sexo, correo, fecha_nacimiento FROM skillup.alumno, skillup.grados WHERE alumno.id_grado = grados.id_grado
   `;
 };
 
 const searchProfile = async (req, res) => {
   const studentId = req.params.id;
-
   const query = buildSearchQuery() + " AND id_alumno = $1";
 
   try {
