@@ -91,7 +91,7 @@ async function insertEnterprise(pool, user) {
       codigo: uuidv4.uuid(),
     };
 
-    const query = 'INSERT INTO skillup.empresa (id_empresa, rfc, direccion, nombre) VALUES ($1, $2, $3, $4)';
+    const query = 'INSERT INTO skillup.empresa (id_empresa, RFC, direccion, nombre) VALUES ($1, $2, $3, $4)';
     const values = [
       nuevoUsuario.id_empresa,
       nuevoUsuario.rfc,
