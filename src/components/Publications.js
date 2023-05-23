@@ -21,8 +21,8 @@ function PublicationsPrueba() {
       const searchParams = new URLSearchParams(location.search);
 
       if (searchTerm) searchParams.set("busqueda", encodeURIComponent(searchTerm));
-      if (area & area !== 0) searchParams.set("area", encodeURIComponent(area));
-      if (tipo & area !== 0) searchParams.set("tipo", encodeURIComponent(tipo));
+      if (area) searchParams.set("area", encodeURIComponent(area));
+      if (tipo) searchParams.set("tipo", encodeURIComponent(tipo));
 
       navigate(`?${searchParams.toString()}`, { replace: true });
       url += `?${searchParams.toString()}`;
@@ -38,7 +38,7 @@ function PublicationsPrueba() {
 
   useEffect(() => {
     loadPublications();
-  }, [location.search]);
+  }, [location.search,area, tipo]);
 
   const getPublicationsCards = () => {
     let publicationCards = publications.map((publication) => {

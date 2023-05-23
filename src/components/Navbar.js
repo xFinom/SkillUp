@@ -91,7 +91,7 @@ function Navbar() {
           </>
         )}
 
-        {userData && userData.Rol === 1 && (
+        {userData && userData.rol === 1 && (
           <form className="form-inline nav-item" onSubmit={handleSearch}>
             <input
               className="form-control mr-sm-2 text-white"

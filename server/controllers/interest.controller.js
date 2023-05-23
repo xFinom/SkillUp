@@ -44,23 +44,6 @@ const searchInterestAndFilter = async (req, res) => {
 const showInterest = async(req,res) => {
     const params = req.body
 
-  //validar datos
-  /*
-  try {
-    let validate_title = !validator.isEmpty(params.title) && validator.isLength(params.title, { min: 1, max: 35 })
-    let validate_descripcion = !validator.isEmpty(params.description) && validator.isLength(params.description, { min: 1, max: 5000 });
-    let validate_url = !validator.isEmpty(params.url) && validator.isLength(params.url, { min: 1, max: 320 });
-
-    if (!validate_title || !validate_descripcion || !validate_url) {
-      throw new Error("No se ha validado la información")
-    }
-  } catch (error) {
-    return res.status(400).json({
-      status: "error",
-      message: "Faltan datos por enviar"
-    })
-  }*/
-
   const query = 'INSERT INTO skillup.interesa (id_estudiante, id_publicacion) VALUES ($1, $2)';
   const values = [
     params.id_alumno,

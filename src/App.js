@@ -13,6 +13,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import LogIn from "./components/LogIn";
 import Codemail from "./components/Codemail";
+import InterestStudents from "./components/InterestStudents";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/confirmation" element={<Codemail />} />
           <Route path="/publications" element={<Publications/>} />
           <Route path="/student/:id" element={<Studentcard/>} />
+          <Route path="/student/:id/interest" element={<InterestStudents />} />
           <Route path="/company/:id" element={<Companycard/>} />
           <Route path="/publications/new" element={<CreatePublication />} />
           <Route path="/publication/:id" element={<PubllicationPage />} />

@@ -130,7 +130,6 @@ const searchAndFilterPublications = async (req, res) => {
   }
 };
 
-let lastPublication = 3;
 const createPublication = async (req, res) => {
   const params = req.body
 
