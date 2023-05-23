@@ -1,5 +1,4 @@
-const {Pool} = require('pg')
-
+const { Pool } = require('pg')
 const dotenv = require("dotenv");
 
 // importar las variables de entorno

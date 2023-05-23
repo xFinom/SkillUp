@@ -1,7 +1,6 @@
 import React from "react";
 import '../App.css';
-import image1 from './img/image1.jpg';
-import Usuario from "./UsuarioReseña";
+import Usuario from './Usuario'
 
 function BodyMainPage() {
   return (
@@ -9,7 +8,7 @@ function BodyMainPage() {
       <div className="card text-white mb-3" style={{ backgroundColor: "#2d2d2f" }}>
         <div className="row">
           <div className="col-md-4">
-            <img src={image1} className="img-thumbnail" alt="right" style={{ float: "right" }} />
+            <img src="" className="img-thumbnail" alt="right" style={{ float: "right" }} />
           </div>
           <div className="col-md-6">
             <h1 className="texto">Skill UP!</h1>

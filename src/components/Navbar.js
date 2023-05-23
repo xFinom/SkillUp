@@ -1,42 +1,54 @@
-import React from "react";
-import "./Component.css";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/publications?busqueda=${searchTerm}`);
+    setSearchTerm("");
+  };
+
   return (
-    <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-component border-bottom">
+    <nav className="navbar navbar-expand-sm fixed-top navbar-dark bg-component border-bottom">
       <div className="container">
-        <a href="localhost:3000" class="navbar-brand mb-0 h1">
+        <Link to="/" className="navbar-brand mb-0 h1">
           SkillUp!
-        </a>
+        </Link>
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a href="localhost:3000" className="nav-link active">
+              <Link to="/" className="nav-link">
                 Inicio
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a href="localhost:3000" className="nav-link">
+              <Link to="/publications?tipo=2" className="nav-link">
                 Cursos
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a href="localhost:3000" className="nav-link">
+              <Link to="/publications?tipo=1" className="nav-link">
                 Trabajos
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
-        <form class="form-inline nav-item">
+        <form className="form-inline nav-item" onSubmit={handleSearch}>
           <input
-            class="form-control mr-sm-2 text-white"
+            className="form-control mr-sm-2 text-white"
             type="search"
+            name="search"
             placeholder="Buscar oferta"
             aria-label="Search"
             style={{ backgroundColor: "#2d2d2f" }}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </form>
       </div>
