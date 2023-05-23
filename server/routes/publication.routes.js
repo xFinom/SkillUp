@@ -4,15 +4,18 @@ const {
   getPublicationById,
   searchPublication,
   filterPublications,
-  searchAndFilterPublications
+  searchAndFilterPublications,
+  createPublication
 } = require("../controllers/publication.controller");
 
 const router = Router();
 
-router.get("/publications", getAllPublications);
-router.get("/publications/search", searchPublication);
-router.get("/publication/:id", getPublicationById);
-router.get("/publications/filter", filterPublications);
-router.get("/publications/searchAndFilter", searchAndFilterPublications);
+router.get("/", getAllPublications);
+router.get("/search", searchPublication);
+router.get("/page/:id", getPublicationById);
+router.get("/filter", filterPublications);
+router.get("/searchAndFilter", searchAndFilterPublications);
+
+router.post("/create", createPublication);
 
 module.exports = router;
