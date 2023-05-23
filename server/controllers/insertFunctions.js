@@ -20,7 +20,7 @@ async function insertarUsuario(pool, user) {
       codigo: uuidv4.uuid(),
     };
 
-    const query = 'INSERT INTO skillup.alumno (id_alumno, nombre, apellido, universidad, carrera, descripcion, id_grado, correo, sexo, fecha_nacimiento) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
+    const query = 'INSERT INTO skillup.alumno (id_alumno, nombre, apellido, universidad, carrera, descripcion, id_grado, sexo, fecha_nacimiento) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
     const values = [
       nuevoUsuario.id_alumno,
       nuevoUsuario.nombre,
@@ -29,13 +29,13 @@ async function insertarUsuario(pool, user) {
       nuevoUsuario.carrera,
       nuevoUsuario.descripcion,
       nuevoUsuario.id_grado,
-      nuevoUsuario.correo,
       nuevoUsuario.sexo,
       nuevoUsuario.fecha_nacimiento,
     ];
 
-    const query2 = 'INSERT INTO skillup.cuenta_usuario (contrasena, correo, estado_cuenta, tipo_usuario, codigo) VALUES ($1, $2, $3, $4, $5)';
+    const query2 = 'INSERT INTO skillup.cuenta_usuario (id_cuenta, contrasena, correo, estado_cuenta, tipo_usuario, codigo) VALUES ($1, $2, $3, $4, $5, $6)';
     const values2 = [
+      nuevoUsuario.id_alumno,
       nuevoUsuario.contrasena,
       nuevoUsuario.correo,
       nuevoUsuario.estado_cuenta,
@@ -91,17 +91,17 @@ async function insertEnterprise(pool, user) {
       codigo: uuidv4.uuid(),
     };
 
-    const query = 'INSERT INTO skillup.empresa (id_empresa, rfc, direccion, nombre, correo) VALUES ($1, $2, $3, $4, $5)';
+    const query = 'INSERT INTO skillup.empresa (id_empresa, rfc, direccion, nombre) VALUES ($1, $2, $3, $4)';
     const values = [
       nuevoUsuario.id_empresa,
       nuevoUsuario.rfc,
       nuevoUsuario.direccion,
       nuevoUsuario.nombre,
-      nuevoUsuario.correo,
     ];
 
-    const query2 = 'INSERT INTO skillup.cuenta_usuario ( contrasena, correo, estado_cuenta, tipo_usuario, codigo) VALUES ($1, $2, $3, $4, $5)';
+    const query2 = 'INSERT INTO skillup.cuenta_usuario ( id_cuenta, contrasena, correo, estado_cuenta, tipo_usuario, codigo) VALUES ($1, $2, $3, $4, $5, $6)';
     const values2 = [
+      nuevoUsuario.id_empresa,
       nuevoUsuario.contrasena,
       nuevoUsuario.correo,
       nuevoUsuario.id_estado,
