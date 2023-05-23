@@ -1,6 +1,9 @@
 // importar la conexión a la base de datos
 const pool = require("../database/database");
 
+const validator = require("validator")
+const uuidv4 = require('uuidv4')
+
 // Función auxiliar para construir la consulta base
 const buildQuery = () => {
   return `
@@ -28,7 +31,7 @@ const getAllPublications = async (req, res) => {
 
 const getPublicationById = async (req, res) => {
   // Obtener el parámetro de la URL
-  const publicationId = parseInt(req.params.id);
+  const publicationId = req.params.id;
 
   // Construir la consulta
   const query = buildQuery() + " AND publicacion.id_publicacion = $1";
@@ -121,10 +124,55 @@ const searchAndFilterPublications = async (req, res) => {
   }
 };
 
+let lastPublication = 3;
+const createPublication = async (req, res) => {
+  const params = req.body
+
+  //validar datos
+  try {
+    let validate_title = !validator.isEmpty(params.title) && validator.isLength(params.title, { min: 1, max: 35 })
+    let validate_descripcion = !validator.isEmpty(params.description) && validator.isLength(params.description, { min: 1, max: 5000 });
+    let validate_url = !validator.isEmpty(params.url) && validator.isLength(params.url, { min: 1, max: 320 });
+
+    if (!validate_title || !validate_descripcion || !validate_url) {
+      throw new Error("No se ha validado la información")
+    }
+  } catch (error) {
+    return res.status(400).json({
+      status: "error",
+      message: "Faltan datos por enviar"
+    })
+  }
+
+  const query = 'INSERT INTO skillup.publicacion (id_publicacion, titulo, descripcion, correo_contacto, id_empresa, id_tipo, id_estado, id_area, fecha_creacion) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, CURRENT_DATE)';
+  const values = [
+    uuidv4.uuid(),
+    params.title,
+    params.description,
+    params.url,
+    params.id_empresa,
+    params.tipo,
+    1,
+    params.area
+  ]
+
+  try {
+    await pool.query(query, values);
+    return res.status(200).send({
+      status: "exito",
+      message: "Publicación insertada correctamente"
+    })
+  } catch (error) {
+    console.error("Error en la insercion:", error);
+    return res.status(500).json({ error: "Error en la insercion" });
+  }
+}
+
 module.exports = {
   getAllPublications,
   getPublicationById,
   searchPublication,
   filterPublications,
   searchAndFilterPublications,
+  createPublication
 };

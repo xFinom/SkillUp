@@ -2,7 +2,7 @@ const pool = require('../database/database')
 
 const buildSearchQuery = () => {
   return `
-  SELECT id_alumno, alumno.nombre, apellido, universidad, carrera, descripcion, grados.grado, sexo, fecha_nacimiento FROM skillup.alumno, skillup.grados WHERE alumno.id_grado = grados.id_grado
+  SELECT id_alumno, nombre, apellido, universidad, carrera, descripcion, grado, sexo, fecha_nacimiento FROM skillup.alumno, skillup.grados WHERE alumno.id_grado = grados.id_grado
   `;
 };
 
@@ -26,7 +26,7 @@ const getAllStudents = async (req, res) => {
 
   try {
     const result = await pool.query(query);
-    return res.status(200).json(result.rows[0]);
+    return res.status(200).json(result.rows);
   } catch (error) {
     console.error("Error al obtener a los estudiantes:", error);
     return res
