@@ -1,14 +1,42 @@
 const pool = require('../database/database')
-const Publication = require('../models/Publication')
 
-const register = async (req, res) => {
-    const result = await pool.query(
-      "SELECT id_publicacion, titulo, descripcion, id_empresa, area, tipo, correo_contacto FROM skillup.publicacion, skillup.area_publicacion, skillup.tipo_publicacion WHERE publicacion.id_area = area_publicacion.id_area AND publicacion.id_tipo = tipo_publicacion.id_tipo;"
-    );
-  
-    return res.status(200).json(result.rows);
-  };
+const buildSearchQuery = () => {
+  return `
+  SELECT id_alumno, alumno.nombre, apellido, universidad, carrera, descripcion, grados.grado, sexo, correo, fecha_nacimiento FROM skillup.alumno, skillup.grados WHERE alumno.id_grado = grados.id_grado;
+  `;
+};
+
+const searchProfile = async (req, res) => {
+  const studentId = req.params.id;
+
+  const query = buildSearchQuery() + " AND id_alumno = $1";
+
+  try {
+    const result = await pool.query(query, [studentId]);
+    return res.status(200).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error al obtener al estudiante por ID:", error);
+    return res
+      .status(500)
+      .json({ error: "Error al obtener al estudiante por ID" });
+  }
+}
+
+const getAllStudents = async (req, res) => {
+  const query = buildSearchQuery()
+
+  try {
+    const result = await pool.query(query);
+    return res.status(200).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error al obtener a los estudiantes:", error);
+    return res
+      .status(500)
+      .json({ error: "Error al obtener a los estudiantes" });
+  }
+}
 
 module.exports = {
-    register
+  searchProfile,
+  getAllStudents
 }

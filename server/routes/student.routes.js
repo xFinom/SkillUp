@@ -1,8 +1,9 @@
 const { Router } = require("express");
-const {register}  = require("../controllers/student.controller")
+const {searchProfile, getAllStudents}  = require("../controllers/student.controller")
 
 const router = Router();
 
-router.get("/register", register);
+router.get("/profile/:id", searchProfile);
+router.get("/", getAllStudents);
 
 module.exports = router;
