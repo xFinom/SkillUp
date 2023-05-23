@@ -1,12 +1,11 @@
 import React from "react";
-import prueba from "./imagenes/prueba.jpg";
 
 function Studentcard() {
   return (
     <div class="card" style={{ backgroundColor: "#2d2d2f" }}>
       <div className="container">
         <center>
-          <img class="image-fluid" src={prueba} alt="Card cap"></img>
+          <img class="image-fluid" src="" alt="Card cap"></img>
         </center>
       </div>
       <div class="card-body bg-light">
@@ -25,7 +24,7 @@ function Studentcard() {
           <li class="list-group-item">Ingenieria informatica</li>
         </center>
         <center>
-          <li class="list-group-item">Cuarto semestre</li>
+          <li class="list-group-item">Cuarto Semestre</li>
         </center>
         <center>
           <li class="list-group-item">cesarrihu@hotmail.com</li>

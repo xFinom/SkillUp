@@ -95,6 +95,7 @@ const searchAndFilterPublications = async (req, res) => {
     const searchTerm = req.query.busqueda;
     const area = req.query.area;
     const tipo = req.query.tipo;
+    const id_empresa = req.query.id_empresa;
 
     let query = buildQuery();
     const values = [];
@@ -112,6 +113,11 @@ const searchAndFilterPublications = async (req, res) => {
     if (tipo) {
       query += ` AND publicacion.id_tipo = $${values.length + 1}`;
       values.push(tipo);
+    }
+
+    if (id_empresa) {
+      query += ` AND publicacion.id_empresa = $${values.length + 1}`;
+      values.push(id_empresa);
     }
 
     const result = await pool.query(query, values);

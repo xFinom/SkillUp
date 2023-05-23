@@ -15,11 +15,14 @@ function PublicationsPrueba() {
     try {
       let url = "http://localhost:3000/api/publications/searchAndFilter";
 
+      const userData = JSON.parse(sessionStorage.getItem("userData"));
+      console.log(userData);
+
       const searchParams = new URLSearchParams(location.search);
 
       if (searchTerm) searchParams.set("busqueda", encodeURIComponent(searchTerm));
-      if (area) searchParams.set("area", encodeURIComponent(area));
-      if (tipo) searchParams.set("tipo", encodeURIComponent(tipo));
+      if (area & area !== 0) searchParams.set("area", encodeURIComponent(area));
+      if (tipo & area !== 0) searchParams.set("tipo", encodeURIComponent(tipo));
 
       navigate(`?${searchParams.toString()}`, { replace: true });
       url += `?${searchParams.toString()}`;
@@ -43,7 +46,7 @@ function PublicationsPrueba() {
         <div className="col-md-4" key={publication.id_publicacion}>
           <PublicationCard
             title={publication.titulo}
-            description={publication.descripcion}
+            area={publication.area}
             footer={publication.tipo}
             id_publicacion={publication.id_publicacion}
           />
@@ -65,16 +68,15 @@ function PublicationsPrueba() {
             value={area}
             onChange={(e) => setArea(e.target.value)}
           >
-            <option value="" defaultValue>
+            <option value="0" selected>
               Áreas de Interés
             </option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-            <option value="4">Three</option>
-            <option value="5">Three</option>
-            <option value="6">Three</option>
-            <option value="7">Three</option>
+            <option value="1">Arte y Arquitectura</option>
+            <option value="2">Humanidades</option>
+            <option value="3">Ciencias de la Salud</option>
+            <option value="4">Ciencias Económico Administrativas</option>
+            <option value="5">Ciencias Exactas e Ingenierías</option>
+            <option value="6">Ciencias Biológicas y Agropecuaras</option>
           </select>
         </div>
         <div className="col-sm-4">
@@ -86,7 +88,7 @@ function PublicationsPrueba() {
             value={tipo}
             onChange={(e) => setTipo(e.target.value)}
           >
-            <option value="" defaultValue>
+            <option selected>
               Tipo de Publicación
             </option>
             <option value="1">Ofertas de Trabajo</option>
