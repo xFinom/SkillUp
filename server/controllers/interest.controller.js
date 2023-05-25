@@ -1,13 +1,10 @@
 // importar la conexión a la base de datos
 const pool = require("../database/database");
 
-const validator = require("validator")
-const uuidv4 = require('uuidv4')
-
 // Función auxiliar para construir la consulta base
 const buildQuery = () => {
     return `
-    SELECT alumno.nombre, apellido, titulo, empresa.nombre
+    SELECT alumno.nombre, apellido, titulo, empresa.nombre AS empresa, id_tipo, alumno.id_alumno AS id
     FROM skillup.alumno, skillup.empresa, skillup.publicacion, skillup.interesa
     WHERE alumno.id_alumno = interesa.id_estudiante AND interesa.id_publicacion = publicacion.id_publicacion AND publicacion.id_empresa = empresa.id_empresa
       `;
@@ -15,20 +12,20 @@ const buildQuery = () => {
 
 const searchInterestAndFilter = async (req, res) => {
     try {
-        const id_empresa = req.query.busqueda;
-        const id_estudiante = req.query.area;
+        const id_empresa = req.query.id_empresa;
+        const id_estudiante = req.query.id_estudiante;
     
         let query = buildQuery();
         const values = [];
     
         if (id_empresa) {
           query += ` AND empresa.id_empresa = $${values.length + 1}`;
-          values.push(area);
+          values.push(id_empresa);
         }
     
         if (id_estudiante) {
-          query += ` AND publicacion.id_area = $${values.length + 1}`;
-          values.push(area);
+          query += ` AND alumno.id_alumno = $${values.length + 1}`;
+          values.push(id_estudiante);
         }
     
         const result = await pool.query(query, values);

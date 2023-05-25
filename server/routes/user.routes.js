@@ -58,9 +58,17 @@ router.post("/login", async (req, res) => {
 
 router.post("/verifycode", async (req, res) => {
     const datCode = req.body;
+
+    if(!datCode.id){
+        return res.status(404).send({
+            status: "error",
+            message: "No se ha encontrado el código en la base de datos"
+        })
+    }
+
     const response = await verificarCodigo(pool, datCode)
 
-    res.status(200).send(response)
+    return res.status(200).send(response)
 });
 
 module.exports = router;

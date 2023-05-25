@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FormAlumno } from "./FormAlumno";
 import { FormEmpresa } from "./FormEmpresa";
 
@@ -24,7 +23,9 @@ function Signin() {
     confPassword: ""
   });
 
-  const [studentForm, setStudentForm] = useState(true)
+  const [studentForm, setStudentForm] = useState(true);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [userType, setUserType] = useState(""); // Nuevo estado para almacenar el tipo de usuario
 
   const handleCompanyChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +48,9 @@ function Signin() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        console.log(data);
+        setUserType(studentForm ? "alumno" : "empresa"); // Establecer el tipo de usuario
+        setShowConfirmation(true);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -72,6 +75,11 @@ function Signin() {
         {studentForm ?
           <FormAlumno handleChange={handleStudentChange} />
           : <FormEmpresa handleChange={handleCompanyChange} />}
+        {showConfirmation && (
+          <div className="alert alert-success mt-3" role="alert">
+            <strong>¡Registro exitoso!</strong> ¡Bienvenido{userType === "alumno" ? " se te ha envíado un código de confirmación por correo" : " tu cuenta está pendiente para ser verificada por uno de nuestros administradores"}!
+          </div>
+        )}
         <button
           className="btn btn-lg btn-outline-secondary btn-block"
           type="submit "

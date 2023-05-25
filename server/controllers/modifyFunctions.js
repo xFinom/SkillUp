@@ -1,7 +1,6 @@
 // Controlador para verificar el código y actualizar la columna
 const verificarCodigo = async (pool, datCode) => {
     try {
-        console.log(datCode.code)
         const query = 'UPDATE skillup.cuenta_usuario SET estado_cuenta = $1 WHERE codigo = $2';
         const values = [2, datCode.code];
   

@@ -1,38 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function Studentcard() {
+function StudentCard() {
+  const { id } = useParams();
+  const [studentData, setStudentData] = useState(null);
+
+  useEffect(() => {
+    const fetchStudentData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/student/profile/${id}`);
+        const data = await response.json();
+        setStudentData(data);
+      } catch (error) {
+        console.error("Error al obtener los datos del estudiante:", error);
+      }
+    };
+
+    fetchStudentData();
+  }, [id]);
+
+  if (!studentData) {
+    return <div>Cargando...</div>;
+  }
+
+  const {
+    nombre,
+    apellido,
+    descripcion,
+    universidad,
+    carrera,
+    grado,
+    correo
+  } = studentData;
+
   return (
-    <div class="card" style={{ backgroundColor: "#2d2d2f" }}>
+    <div className="card" style={{ backgroundColor: "#2d2d2f" }}>
       <div className="container">
         <center>
-          <img class="image-fluid" src="" alt="Card cap"></img>
+          <img className="image-fluid" src="" alt="Card cap" />
         </center>
       </div>
-      <div class="card-body bg-light">
+      <div className="card-body bg-light">
         <center>
-          <h5 class="card-title">Cesar Arturo Rizo Hurtado</h5>
+          <h5 className="card-title">
+            {nombre} {apellido}
+          </h5>
         </center>
         <center>
-          <p class="card-text">"emocionado por entrar al mundo laboral"</p>
+          <p className="card-text">{descripcion}</p>
         </center>
       </div>
-      <ul class="list-group list-group-flush bg-light">
+      <ul className="list-group list-group-flush bg-light">
         <center>
-          <li class="list-group-item">Universidad de Guadalajara</li>
+          <li className="list-group-item">{universidad}</li>
         </center>
         <center>
-          <li class="list-group-item">Ingenieria informatica</li>
+          <li className="list-group-item">{carrera}</li>
         </center>
         <center>
-          <li class="list-group-item">Cuarto Semestre</li>
+          <li className="list-group-item">{grado}</li>
         </center>
         <center>
-          <li class="list-group-item">cesarrihu@hotmail.com</li>
+          <li className="list-group-item">{correo}</li>
         </center>
       </ul>
-      <div class="card-body bg-light">
+      <div className="card-body bg-light">
         <center>
-          <button type="button" class="btn btn-secondary">
+          <button type="button" className="btn btn-secondary">
             CURRICULUM VITAE
           </button>
         </center>
@@ -41,4 +75,4 @@ function Studentcard() {
   );
 }
 
-export default Studentcard;
+export default StudentCard;

@@ -29,11 +29,21 @@ function Navbar() {
               </Link>
             </li>
 
+            {!userData && (
+              <>
+                <li className="nav-item">
+                  <Link to="/confirmation" className="nav-link">
+                    Confirmacion Cuenta
+                  </Link>
+                </li>
+              </>
+            )}
+
             {userData && userData.rol === 0 && (
               <>
                 <li className="nav-item">
-                  <Link to="/publications?tipo=2" className="nav-link">
-                    Cursos
+                  <Link to="/panel" className="nav-link">
+                    Panel
                   </Link>
                 </li>
               </>
@@ -52,6 +62,18 @@ function Navbar() {
                     Trabajos
                   </Link>
                 </li>
+
+                <li className="nav-item">
+                  <Link to="/student/interest" className="nav-link">
+                    Interes
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link to={`/student/${userData.id}`} className="nav-link">
+                    Perfil
+                  </Link>
+                </li>
               </>
             )}
 
@@ -66,6 +88,17 @@ function Navbar() {
                 <li className="nav-item">
                   <Link to={`/publications?tipo=1&id_empresa=${userData.id}`} className="nav-link">
                     Trabajos
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link to={`/company/interest`} className="nav-link">
+                    Interesados
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={`/company/${userData.id}`} className="nav-link">
+                    Perfil
                   </Link>
                 </li>
               </>
@@ -88,6 +121,19 @@ function Navbar() {
                 </Link>
               </li>
             </ul>
+          </>
+        )}
+
+        {userData && userData.rol === 2 && (
+          <>
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to="/publications/new" className="nav-link">
+                  Crear Oferta
+                </Link>
+              </li>
+            </ul>
+            
           </>
         )}
 

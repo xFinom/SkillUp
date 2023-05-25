@@ -2,7 +2,9 @@ const pool = require('../database/database')
 
 const buildSearchQuery = () => {
   return `
-  SELECT id_alumno, nombre, apellido, universidad, carrera, descripcion, grado, sexo, fecha_nacimiento FROM skillup.alumno, skillup.grados WHERE alumno.id_grado = grados.id_grado
+  SELECT id_alumno, nombre, apellido, universidad, carrera, descripcion, grado, sexo, fecha_nacimiento, correo 
+FROM skillup.alumno, skillup.grados, skillup.cuenta_usuario 
+WHERE alumno.id_grado = grados.id_grado AND alumno.id_alumno = cuenta_usuario.id_usuario
   `;
 };
 

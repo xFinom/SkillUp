@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 
 const Codemail = () => {
-  const [code, setCode] = useState(""); // Estado para almacenar el valor del código
+  const [code, setCode] = useState("");
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false); // Nuevo estado para el mensaje de confirmación
 
-  const handleClick = () => {
-    const body = { code }; // Usamos el valor capturado del estado 'code'
+  const handleClick = event => {
+    event.preventDefault(); // Evitar el envío del formulario si el campo está vacío
+
+    if (code.trim() === "") {
+      setError("El campo código no puede estar vacío");
+      setSuccess(false); // Restablecer el estado de éxito
+      return;
+    }
+
+    const body = { code };
     fetch("http://localhost:3000/api/user/verifycode", {
       method: "POST",
       headers: {
@@ -15,14 +25,18 @@ const Codemail = () => {
       .then(response => response.json())
       .then(data => {
         console.log(data);
+        setSuccess(true); // Mostrar el mensaje de confirmación
+        setError(null); // Restablecer el estado de error
       })
       .catch(error => {
         console.error("Error:", error);
+        setError("Ocurrió un error al procesar la solicitud");
+        setSuccess(false); // Restablecer el estado de éxito
       });
   };
 
   const handleChange = event => {
-    setCode(event.target.value); // Actualizamos el estado 'code' con el valor del input
+    setCode(event.target.value);
   };
 
   return (
@@ -46,14 +60,20 @@ const Codemail = () => {
             name="code"
             required
             autoFocus
-            value={code} // Asignamos el valor del estado al input
-            onChange={handleChange} // Asignamos la función handleChange al evento onChange
+            value={code}
+            onChange={handleChange}
           />
         </div>
-        <div className="d-flex justify-content-around mt-4">
-          <div className="d-flex align-items-center gap-1"></div>
-          <div className="pt-1"></div>
-        </div>
+        {error && (
+          <div className="alert alert-danger mt-3" role="alert">
+            {error}
+          </div>
+        )}
+        {success && (
+          <div className="alert alert-success mt-3" role="alert">
+            Cuenta confirmada exitosamente.
+          </div>
+        )}
         <button
           className="btn btn-secondary text-white w-100 mt-4 fw-semibold shadow-sm"
           type="submit"
@@ -61,7 +81,6 @@ const Codemail = () => {
         >
           VALIDAR PERFIL
         </button>
-        <div className="d-flex gap-1 justify-content-center mt-1"></div>
       </div>
     </div>
   );

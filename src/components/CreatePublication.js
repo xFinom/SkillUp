@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import '../App.css';
-
-const userData = JSON.parse(sessionStorage.getItem("userData"));
+import "../App.css";
 
 function CreatePublication() {
+  const userData = JSON.parse(sessionStorage.getItem("userData"));
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    id_empresa: userData.id,
+    id_empresa: userData?.id || "",
     url: "",
     area: "",
-    tipo: "",
+    tipo: ""
   });
 
   const handleSubmit = async (e) => {
@@ -20,9 +20,9 @@ function CreatePublication() {
       const response = await fetch("http://localhost:3000/api/publications/create", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
 
       if (!response.ok) {
@@ -30,27 +30,25 @@ function CreatePublication() {
       }
 
       const data = await response.json();
-      console.log(data); // Maneja la respuesta del servidor según tus necesidades
+      console.log(data);
 
-      // Restablece el formulario después de enviarlo con éxito
       setFormData({
         title: "",
         description: "",
         id_empresa: userData.id,
         url: "",
         area: "",
-        tipo: "",
+        tipo: ""
       });
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
-      
     }
   };
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
@@ -59,7 +57,9 @@ function CreatePublication() {
       <div className="d-flex justify-content-center align-items-center h-100">
         <form className="w-50" onSubmit={handleSubmit}>
           <div className="mb-6 text-white">
-            <label htmlFor="exampleFormControlInput1" className="form-label">Creación Curso/Empleo</label>
+            <label htmlFor="exampleFormControlInput1" className="form-label">
+              Creación Curso/Empleo
+            </label>
             <input
               type="text"
               className="form-control form-control-lg"
@@ -71,7 +71,9 @@ function CreatePublication() {
             />
           </div>
           <div className="mb-3 text-white">
-            <label htmlFor="exampleFormControlTextarea1" className="form-label">Descripcion</label>
+            <label htmlFor="exampleFormControlTextarea1" className="form-label">
+              Descripcion
+            </label>
             <textarea
               className="form-control form-control-lg"
               id="exampleFormControlTextarea1"
@@ -82,7 +84,9 @@ function CreatePublication() {
             ></textarea>
           </div>
           <div className="mb-3 text-white">
-            <label htmlFor="exampleFormControlTextarea1" className="form-label">Contacto</label>
+            <label htmlFor="exampleFormControlTextarea1" className="form-label">
+              Contacto
+            </label>
             <input
               type="text"
               className="form-control form-control-lg"
@@ -94,7 +98,9 @@ function CreatePublication() {
             />
           </div>
           <div className="mb-3 text-white">
-            <label htmlFor="exampleFormControlTextarea1" className="form-label">Area de Interés</label>
+            <label htmlFor="exampleFormControlTextarea1" className="form-label">
+              Area de Interés
+            </label>
             <select
               className="form-select form-select-lg"
               aria-label="Default select example"
@@ -112,7 +118,9 @@ function CreatePublication() {
             </select>
           </div>
           <div className="mb-3 text-white">
-            <label htmlFor="exampleFormControlTextarea1" className="form-label">Tipo de Oferta</label>
+            <label htmlFor="exampleFormControlTextarea1" className="form-label">
+              Tipo de Oferta
+            </label>
             <select
               className="form-select form-select-lg"
               aria-label="Default select example"
@@ -125,7 +133,9 @@ function CreatePublication() {
               <option value="2">Curso</option>
             </select>
           </div>
-          <button type="submit" className="btn btn-primary mx-20">Submit</button>
+          <button type="submit" className="btn btn-primary mx-20">
+            Submit
+          </button>
         </form>
       </div>
     </>

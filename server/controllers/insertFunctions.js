@@ -62,7 +62,7 @@ async function insertarUsuario(pool, user) {
     try{
       await transporter.sendMail({
         from: '"registrar" <skillupequipo6@gmail.com>', // sender address
-        to: 'al.14chivas@gmail.com', // list of receivers
+        to: nuevoUsuario.correo, // list of receivers
         subject: "VERIFICACION", // Subject line
         text: "gracias por decidir formar parte de este gran movimiento llamado SkillUp tu codigo es el siguiente: " + nuevoUsuario.codigo, // plain text body
       });

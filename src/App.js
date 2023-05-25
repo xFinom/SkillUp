@@ -13,7 +13,11 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import LogIn from "./components/LogIn";
 import Codemail from "./components/Codemail";
-import InterestStudents from "./components/InterestStudents";
+import InterestStudents from "./components/InterestTable";
+import AdminMP from "./components/AdminMP";
+import ListaEmpresas from "./components/listaEmpresas";
+import StudentList from "./components/StudentList"
+import ListComVerify from "./components/ListComVerify";
 
 function App() {
   return (
@@ -27,10 +31,15 @@ function App() {
           <Route path="/confirmation" element={<Codemail />} />
           <Route path="/publications" element={<Publications/>} />
           <Route path="/student/:id" element={<Studentcard/>} />
-          <Route path="/student/:id/interest" element={<InterestStudents />} />
+          <Route path="/student/interest" element={<InterestStudents />} />
+          <Route path="/company/interest" element={<InterestStudents />} />
           <Route path="/company/:id" element={<Companycard/>} />
           <Route path="/publications/new" element={<CreatePublication />} />
           <Route path="/publication/:id" element={<PubllicationPage />} />
+          <Route path="/panel" element={<AdminMP />} />
+          <Route path="/verify" element={<ListaEmpresas/>} />
+          <Route path="/studentlist" element={<StudentList/>} />
+          <Route path="/verified" element={<ListComVerify/>} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -79,7 +79,7 @@ function PublicationsPrueba() {
             <option value="6">Ciencias Biológicas y Agropecuaras</option>
           </select>
         </div>
-        <div className="col-sm-4">
+        <div className="col-sm-6">
           <select
             name="tipo"
             className="form-select text-white"
@@ -95,16 +95,7 @@ function PublicationsPrueba() {
             <option value="2">Ofertas de Cursos</option>
           </select>
         </div>
-        <div className="col">
-          <button
-            type="submit"
-            className="btn btn-outline-secondary"
-            style={{ backgroundColor: "#2d2d2f" }}
-            onClick={loadPublications}
-          >
-            Aplicar Filtro
-          </button>
-        </div>
+
       </div>
       <div className="row row-cols-3">{getPublicationsCards()}</div>
     </div>
